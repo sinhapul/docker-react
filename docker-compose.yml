@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - /home/sinhapul/frontend/app/node_modules
+      - .:/home/sinhapul/frontend/app
+  tests:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /home/sinhapul/frontend/app/node_modules
+      - .:/home/sinhapul/frontend/app
+    command: ['npm', 'run', 'test']
